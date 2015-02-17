@@ -71,7 +71,11 @@ public abstract class Model {
 				.notifyChange(ContentProvider.createUri(mTableInfo.getType(), mId), null);
 	}
 
-	public final Long save() {
+    public final Long save() {
+        return save(false);
+    }
+
+	public final Long save(boolean syncToNetwork) {
 		final SQLiteDatabase db = Cache.openDatabase();
 		final ContentValues values = new ContentValues();
 
@@ -159,7 +163,7 @@ public abstract class Model {
 		}
 
 		Cache.getContext().getContentResolver()
-				.notifyChange(ContentProvider.createUri(mTableInfo.getType(), mId), null);
+				.notifyChange(ContentProvider.createUri(mTableInfo.getType(), mId), null, syncToNetwork);
 		return mId;
 	}
 
