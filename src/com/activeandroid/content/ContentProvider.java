@@ -187,6 +187,6 @@ public class ContentProvider extends android.content.ContentProvider {
 	}
 
 	private void notifyChange(Uri uri) {
-		getContext().getContentResolver().notifyChange(uri, null);
+		getContext().getContentResolver().notifyChange(uri, null, false);
 	}
 }

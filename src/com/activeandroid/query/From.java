@@ -299,7 +299,7 @@ public final class From implements Sqlable {
 			
 		} else {
 			SQLiteUtils.execSql(toSql(), getArguments());
-			Cache.getContext().getContentResolver().notifyChange(ContentProvider.createUri(mType, null), null);
+			Cache.getContext().getContentResolver().notifyChange(ContentProvider.createUri(mType, null), null, false);
 			return null;
 			
 		}

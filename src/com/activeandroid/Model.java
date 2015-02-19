@@ -63,12 +63,16 @@ public abstract class Model {
 		return mId;
 	}
 
-	public final void delete() {
+    public final void delete() {
+        delete(false);
+    }
+
+	public final void delete(boolean syncToNetwork) {
 		Cache.openDatabase().delete(mTableInfo.getTableName(), idName+"=?", new String[] { getId().toString() });
 		Cache.removeEntity(this);
 
 		Cache.getContext().getContentResolver()
-				.notifyChange(ContentProvider.createUri(mTableInfo.getType(), mId), null);
+				.notifyChange(ContentProvider.createUri(mTableInfo.getType(), mId), null, syncToNetwork);
 	}
 
     public final Long save() {
